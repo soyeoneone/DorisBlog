@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-DorisBlog::Application.config.secret_key_base = '7c39d7474cfc7e1472649eca1dd4a067475c552569b6d9d9df9cf2014ce13a4d24a6cb6fa159bbdaaa13a2232b18da27f2ca851cd3cd09aeb32ef7576799496b'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+DorisBlog::Application.config.secret_key_base = secure_token
