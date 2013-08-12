@@ -1,4 +1,8 @@
 DorisBlog::Application.routes.draw do
+  root 'static_pages#home'
+  match '/aboutme', to: 'static_pages#aboutme', via: 'get'
+  match '/help', to: 'static_pages#help', via: 'get' 
+  match '/signup', to: 'user#new', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
