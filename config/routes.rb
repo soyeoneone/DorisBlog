@@ -1,4 +1,5 @@
 DorisBlog::Application.routes.draw do
+  get "users/new"
   root 'static_pages#home'
   match '/aboutme', to: 'static_pages#aboutme', via: 'get'
   match '/help', to: 'static_pages#help', via: 'get' 
